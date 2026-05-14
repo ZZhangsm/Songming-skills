@@ -151,7 +151,11 @@ The skill will:
 ## 效果展示 · Gallery
 
 <p>
-  <a title="OpenOneRec Explainer" href="https://github.com/ZZhangsm/model-html-explainer/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
+  <a title="OpenOneRec Explainer 截图" href="https://github.com/ZZhangsm/model-html-explainer/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
+</p>
+
+<p>
+  📄 <a href="https://github.com/ZZhangsm/model-html-explainer/blob/main/docs/gallery/OpenOneRec_Explainer.html" target="_blank">OpenOneRec_Explainer.html</a> — 技能生成的完整 HTML 样例 / Full generated HTML sample
 </p>
 
 <a id="toc-docs"></a>
