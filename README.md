@@ -71,19 +71,19 @@ ln -s /path/to/Songming-skills/model-training-explainer /path/to/your-project/sk
 <a id="toc-usage"></a>
 ## 用法 · Usage
 
-安装后在对话中调用：
+安装后将仓库目录注册为技能源，Claude Code / Codex 即可在对话中通过技能名称自动匹配调用。
 
-Invoke in conversation after installation:
+After installation, register the repo directory as a skill source. Claude Code / Codex will match skills by name during conversation.
 
-```text
-/model-training-explainer
+各技能有独立的调用方式和 trigger pattern，见对应 `SKILL.md`。
 
-> "结合代码库 https://github.com/xxx/xxx 和论文 https://arxiv.org/abs/xxx 生成解释的 HTML"
-```
+Each skill has its own invocation pattern and trigger — see its `SKILL.md` for details.
 
-技能会先读取仓库结构和论文内容，提取关键信息，再生成单文件暗色主题 HTML。
+### 当前技能 · Current skills
 
-The skill will read the repo structure and paper, extract key information, then produce a single-file dark-theme HTML.
+| 技能 Skill | 触发方式 Trigger |
+|---|---|
+| `model-training-explainer` | 对话中提及"模型解释""训练流程""架构图" + GitHub/arXiv 链接 / Mention "model explanation", "training pipeline", "architecture" + GitHub/arXiv link |
 
 <a id="toc-gallery"></a>
 ## 效果展示 · Gallery
