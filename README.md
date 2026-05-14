@@ -4,99 +4,100 @@
 
 A personal collection of Claude Code / Codex skills. Each skill lives in its own directory with a `SKILL.md` entry point and optional `references/`, `scripts/`, `assets/` subdirectories.
 
-## 目录 / Table of Contents
+## 目录 · Table of contents
 
-- [这个仓库是做什么的 / What This Is](#toc-what)
-- [技能列表 / Skills](#toc-skills)
-  - [model-training-explainer](#toc-skill-mte)
-- [安装与接入 / Installation](#toc-installation)
-- [新增一个技能 / Adding a New Skill](#toc-new-skill)
-- [文档结构 / Documentation Map](#toc-docs)
-- [依赖要求 / Requirements](#toc-requirements)
+- [v0.1 更新摘要 · v0.1 Release highlights](#toc-highlights)
+- [这个仓库是做什么的 · What this does](#toc-what)
+- [技能列表 · Skills](#toc-skills)
+- [安装 · Installation](#toc-installation)
+- [用法 · Usage](#toc-usage)
+- [效果展示 · Gallery](#toc-gallery)
+- [文档结构 · Documentation map](#toc-docs)
+- [依赖要求 · Requirements](#toc-requirements)
+
+<a id="toc-highlights"></a>
+## v0.1 更新摘要 · v0.1 Release Highlights
+
+- **初始版本**：首个技能 `model-training-explainer` 就位，支持给定仓库 + 论文生成单文件暗色主题 HTML。
+  **Initial release**: first skill `model-training-explainer` is ready — generate a single-file dark-theme HTML from a code repository and a paper.
 
 <a id="toc-what"></a>
-## 这个仓库是做什么的 / What This Is
+## 这个仓库是做什么的 · What this does
 
-本人日常工作中积累的 AI Agent 技能集合。每个技能封装一类特定任务的工作流——从读取仓库结构、阅读论文、到生成交付物——让 Claude Code / Codex 在收到相关指令时能以一致且可预期的方式执行。技能独立于任何具体代码库，可在多个项目中复用，Claude Code 和 Codex 均可使用。
+本人日常工作中积累的 AI Agent 技能集合。每个技能封装一类特定任务的工作流，让 Claude Code / Codex 在收到相关指令时以一致且可预期的方式执行。技能独立于任何具体代码库，可在多个项目中复用。
 
-This repo collects AI agent skills I've built through daily work. Each skill encapsulates a specific task workflow — reading a repo structure, parsing a paper, or generating a deliverable — so Claude Code / Codex executes consistently and predictably when triggered. Skills are decoupled from any specific project and reusable across repos.
+This repo collects AI agent skills built through daily work. Each skill encapsulates a specific task workflow so Claude Code / Codex executes consistently and predictably when triggered. Skills are decoupled from any project and reusable across repos.
 
 <a id="toc-skills"></a>
-## 技能列表 / Skills
+## 技能列表 · Skills
 
-<a id="toc-skill-mte"></a>
 ### model-training-explainer
 
-**领域 Domain**: code-to-doc · paper-to-HTML · 模型架构解读 · 训练流程可视化
+**领域 Domain:** code-to-doc · paper-to-HTML · 模型架构解读 · 训练流程可视化
 
-给定一个代码仓库和一篇论文（arXiv URL 或 PDF），生成单文件暗色主题的 HTML，逐一讲解模型及其训练流程：架构总览、数据流水线、训练策略、损失函数、评估，将论文中的每项 claim 映射到具体代码行，并用代表性数据集展示真实张量形状。
+给定一个代码仓库和一篇论文（arXiv URL 或 PDF），生成单文件暗色主题 HTML，讲解模型及其训练流程：架构总览、数据流水线、训练策略、损失函数、评估，将论文中的每项 claim 映射到具体代码行，并用代表性数据集展示真实张量形状。
 
-Given a code repository and a paper (arXiv URL or PDF), produce a single-file dark-theme HTML that walks through the model and its training pipeline — architecture overview, data pipeline, training strategy, loss functions, evaluation — mapping each paper claim to concrete code line references with real tensor dimensions from a representative dataset.
+Given a code repository and a paper (arXiv URL or PDF), produce a single-file dark-theme HTML that walks through the model and its training pipeline — architecture overview, data pipeline, training strategy, loss functions, evaluation. Each paper claim maps to concrete code line references with real tensor dimensions.
 
 | 文件 File | 作用 Purpose |
 |---|---|
 | `model-training-explainer/SKILL.md` | 技能定义与执行策略 / Skill definition and workflow |
-| `model-training-explainer/references/template.css` | 暗色主题样式（架构图、流程图、代码块、表格、响应式布局） / Dark-theme CSS for arch diagrams, flow charts, code blocks, tables, responsive layout |
+| `model-training-explainer/references/template.css` | 暗色主题样式（架构图、流程图、代码块、表格、响应式） / Dark-theme CSS (arch diagrams, flow charts, code blocks, tables, responsive layout) |
 | `model-training-explainer/references/template.js` | IntersectionObserver 滚动导航高亮 / Scroll-spy nav highlighter |
 
 <a id="toc-installation"></a>
-## 安装与接入 / Installation
+## 安装 · Installation
+
+**Claude Code**
 
 ```bash
-# Claude Code
-cp -r ./Songming-skills ~/.claude/skills/
-
-# Codex
-cp -r ./Songming-skills ~/.codex/skills/
+git clone https://github.com/<your>/Songming-skills.git ~/.claude/skills/Songming-skills
 ```
 
-或 symlink 到项目本地 / Or symlink into a project:
+**Codex**
+
+```bash
+git clone https://github.com/<your>/Songming-skills.git ~/.codex/skills/Songming-skills
+```
+
+或 symlink 到项目的 `skills/` 目录：
+
+Or symlink into a project's `skills/` directory:
 
 ```bash
 ln -s /path/to/Songming-skills/model-training-explainer /path/to/your-project/skills/
 ```
 
-<a id="toc-new-skill"></a>
-## 新增一个技能 / Adding a New Skill
+<a id="toc-usage"></a>
+## 用法 · Usage
 
-在仓库根目录创建新目录，补充 `SKILL.md`：
+安装后在对话中调用：
 
-Create a new directory with a `SKILL.md` at the repo root:
+Invoke in conversation after installation:
 
-```bash
-mkdir <skill-name>
+```text
+/model-training-explainer
+
+> "结合代码库 https://github.com/xxx/xxx 和论文 https://arxiv.org/abs/xxx 生成解释的 HTML"
 ```
 
-`SKILL.md` 采用以下 frontmatter 格式 / Use this frontmatter format:
+技能会先读取仓库结构和论文内容，提取关键信息，再生成单文件暗色主题 HTML。
 
-```markdown
----
-name: <skill-name>
-description: 一行描述，用于路由匹配 / One-line description for routing.
----
+The skill will read the repo structure and paper, extract key information, then produce a single-file dark-theme HTML.
 
-# <Skill Name>
+<a id="toc-gallery"></a>
+## 效果展示 · Gallery
 
-**领域 / Domain:** <逗号分隔的领域标签 / comma-separated domain tags>
+### model-training-explainer 生成样例 · Generated sample
 
-**概要 / Summary.** <2-3 句说明 / description of what this skill does>
+<p>
+  <a title="OpenOneRec Explainer" href="https://github.com/<your>/Songming-skills/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
+</p>
 
-**执行策略 / Strategy:**
-1. ...
-2. ...
-3. ...
-```
-
-可选子目录 / Optional subdirectories:
-
-- `references/` — 参考文件（CSS、JS 模板等） / reference files (CSS, JS templates, etc.)
-- `scripts/` — 辅助脚本（抽取、构建等） / helper scripts (extraction, build, etc.)
-- `assets/` — 静态资源 / static assets
-
-新增完成后，更新 README 的技能列表段落。/ After adding, update the Skills section of this README.
+> 更多截图可复制到 `docs/gallery/` 中，然后在此处引用。 / Copy additional screenshots into `docs/gallery/` and reference them here.
 
 <a id="toc-docs"></a>
-## 文档结构 / Documentation Map
+## 文档结构 · Documentation map
 
 | 文件 File | 作用 Purpose |
 |---|---|
@@ -105,9 +106,13 @@ description: 一行描述，用于路由匹配 / One-line description for routin
 | `<skill-name>/references/` | 技能配套模板与参考 / Templates and references |
 | `<skill-name>/scripts/` | 技能辅助脚本 / Helper scripts |
 | `<skill-name>/assets/` | 静态资源 / Static assets |
+| `docs/` | 效果截图等辅助文档 / Gallery screenshots and supporting docs |
 
 <a id="toc-requirements"></a>
-## 依赖要求 / Requirements
+## 依赖要求 · Requirements
 
-- Claude Code 或 OpenAI Codex，支持从本地目录加载 skill / Claude Code or OpenAI Codex, with skill loading from local directories
-- 各技能可能有额外依赖，见对应 `SKILL.md` / Individual skills may have additional dependencies — see their `SKILL.md`
+- Claude Code 或 OpenAI Codex，支持从本地目录加载 skill
+- 各技能可能有额外依赖，见对应 `SKILL.md`
+
+- Claude Code or OpenAI Codex, with skill loading from local directories
+- Individual skills may have additional dependencies — see their `SKILL.md`
