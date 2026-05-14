@@ -2,7 +2,7 @@
 
 一个适用于 Claude Code / Codex 的技能集合，用来存放个人积累的 AI Agent 技能。每个技能独立目录，包含 `SKILL.md` 入口及可选的 `references/`、`scripts/`、`assets/` 子目录。
 
-A personal collection of Claude Code / Codex skills, following the `anywhere-agents` skill format. Each skill lives in its own directory with a `SKILL.md` entry point and optional `references/`, `scripts/`, `assets/` subdirectories.
+A personal collection of Claude Code / Codex skills. Each skill lives in its own directory with a `SKILL.md` entry point and optional `references/`, `scripts/`, `assets/` subdirectories.
 
 ## 目录 / Table of Contents
 
@@ -17,9 +17,9 @@ A personal collection of Claude Code / Codex skills, following the `anywhere-age
 <a id="toc-what"></a>
 ## 这个仓库是做什么的 / What This Is
 
-本人日常工作中积累的 AI Agent 技能集合。每个技能封装一类特定任务的工作流——从读取仓库结构、阅读论文、到生成交付物——让 Claude Code / Codex 在收到相关指令时能以一致且可预期的方式执行。技能独立于任何具体代码库，可在多个项目中复用，且遵循 `anywhere-agents` 惯例，Claude Code 和 Codex 均可使用。
+本人日常工作中积累的 AI Agent 技能集合。每个技能封装一类特定任务的工作流——从读取仓库结构、阅读论文、到生成交付物——让 Claude Code / Codex 在收到相关指令时能以一致且可预期的方式执行。技能独立于任何具体代码库，可在多个项目中复用，Claude Code 和 Codex 均可使用。
 
-This repo collects AI agent skills I've built through daily work. Each skill encapsulates a specific task workflow — reading a repo structure, parsing a paper, or generating a deliverable — so Claude Code / Codex executes consistently and predictably when triggered. Skills are decoupled from any specific project, reusable across repos, and compatible with both Claude Code and Codex via the `anywhere-agents` convention.
+This repo collects AI agent skills I've built through daily work. Each skill encapsulates a specific task workflow — reading a repo structure, parsing a paper, or generating a deliverable — so Claude Code / Codex executes consistently and predictably when triggered. Skills are decoupled from any specific project and reusable across repos.
 
 <a id="toc-skills"></a>
 ## 技能列表 / Skills
@@ -42,34 +42,18 @@ Given a code repository and a paper (arXiv URL or PDF), produce a single-file da
 <a id="toc-installation"></a>
 ## 安装与接入 / Installation
 
-### 方式一：Agent Config（anywhere-agents 用户）
-
-把以下配置加入 `agent-config.local.yaml`，然后执行 `anywhere-agents pack verify --fix`：
-
-Add this to your `agent-config.local.yaml`, then run `anywhere-agents pack verify --fix`:
-
-```yaml
-skill_sources:
-  - name: songming
-    url: https://github.com/<your>/Songming-skills
-    ref: main
-```
-
-### 方式二：Symlink 到项目本地
-
-```bash
-ln -s /path/to/Songming-skills/model-training-explainer /path/to/your-project/skills/
-```
-
-### 方式三：复制到全局技能目录
-
-Copy to the global skills directory:
-
 ```bash
 # Claude Code
 cp -r ./Songming-skills ~/.claude/skills/
+
 # Codex
 cp -r ./Songming-skills ~/.codex/skills/
+```
+
+或 symlink 到项目本地 / Or symlink into a project:
+
+```bash
+ln -s /path/to/Songming-skills/model-training-explainer /path/to/your-project/skills/
 ```
 
 <a id="toc-new-skill"></a>
