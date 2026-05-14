@@ -48,42 +48,94 @@ Given a code repository and a paper (arXiv URL or PDF), produce a single-file da
 <a id="toc-installation"></a>
 ## 安装 · Installation
 
+仓库地址：**https://github.com/<your>/Songming-skills**
+
+### 方式一：把下面这段话发给 AI（推荐） / Option A: paste this prompt to an AI agent
+
+把下面整段复制给 **Claude Code / Cursor / 任何有 shell 权限的 AI Agent**，由它执行命令完成安装。
+
+Paste the block below to **Claude Code / Cursor / any AI agent with shell access** so it can run the install for you.
+
+```text
+帮我安装 Songming-skills 这个 Claude Code / Codex skill。请按下面步骤做：
+
+【Claude Code】
+- 确保 ~/.claude/skills/ 目录存在（不存在就创建）
+- 若 ~/.claude/skills/Songming-skills 已存在且是旧副本，先删掉该目录或改用 git pull 更新
+- 执行：git clone https://github.com/<your>/Songming-skills.git ~/.claude/skills/Songming-skills
+- 验证：ls ~/.claude/skills/Songming-skills/ 应至少能看到 README.md、model-training-explainer/
+
+【Codex】
+- 确保 ~/.codex/skills/ 目录存在（不存在就创建）
+- 若 ~/.codex/skills/Songming-skills 已存在且是旧副本，先删掉该目录或改用 git pull 更新
+- 执行：git clone https://github.com/<your>/Songming-skills.git ~/.codex/skills/Songming-skills
+- 验证：ls ~/.codex/skills/Songming-skills/ 应至少能看到 README.md、model-training-explainer/
+
+只帮我装我实际用的那一套（Claude Code 或 Codex），装好后告诉我已完成；之后我说「根据仓库和论文生成模型解释 HTML」等需求应能触发这个 skill。
+```
+
+### 方式二：手动命令行 / Option B: manual shell
+
 **Claude Code**
 
 ```bash
+mkdir -p ~/.claude/skills
 git clone https://github.com/<your>/Songming-skills.git ~/.claude/skills/Songming-skills
 ```
 
 **Codex**
 
 ```bash
+mkdir -p ~/.codex/skills
 git clone https://github.com/<your>/Songming-skills.git ~/.codex/skills/Songming-skills
 ```
 
-或 symlink 到项目的 `skills/` 目录：
+若目标目录已存在，请先删除旧目录或进入该目录用 `git pull` 更新，再执行 `git clone`。
 
-Or symlink into a project's `skills/` directory:
+If the target folder already exists, remove the old tree or `git pull` inside it before cloning again.
+
+### 本地已有源码时 / When you already have a git clone
+
+在仓库的**父目录**执行（把路径换成你的实际位置）：
+
+From the **parent directory** of your clone (adjust the path):
 
 ```bash
-ln -s /path/to/Songming-skills/model-training-explainer /path/to/your-project/skills/
+cp -r ./Songming-skills ~/.claude/skills/
+# 或 / or
+cp -r ./Songming-skills ~/.codex/skills/
+```
+
+### 调用 / Invoke
+
+安装完成后在对话里使用：
+
+Then invoke with:
+
+```text
+/model-training-explainer
 ```
 
 <a id="toc-usage"></a>
 ## 用法 · Usage
 
-安装后将仓库目录注册为技能源，Claude Code / Codex 即可在对话中通过技能名称自动匹配调用。
-
-After installation, register the repo directory as a skill source. Claude Code / Codex will match skills by name during conversation.
-
-各技能有独立的调用方式和 trigger pattern，见对应 `SKILL.md`。
-
-Each skill has its own invocation pattern and trigger — see its `SKILL.md` for details.
-
-### 当前技能 · Current skills
+### 当前技能 / Current skills
 
 | 技能 Skill | 触发方式 Trigger |
 |---|---|
 | `model-training-explainer` | 对话中提及"模型解释""训练流程""架构图" + GitHub/arXiv 链接 / Mention "model explanation", "training pipeline", "architecture" + GitHub/arXiv link |
+
+### model-training-explainer
+
+```text
+/model-training-explainer
+
+> "结合代码库 https://github.com/xxx/xxx 和论文 https://arxiv.org/abs/xxx 生成解释的 HTML"
+```
+
+技能会先读取仓库结构和论文内容，提取关键信息，再生成单文件暗色主题 HTML。
+
+The skill will read the repo structure and paper, extract key information, then produce a single-file dark-theme HTML.
 
 <a id="toc-gallery"></a>
 ## 效果展示 · Gallery
