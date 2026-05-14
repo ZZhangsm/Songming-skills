@@ -1,4 +1,4 @@
-# model-training-explainer
+# model-html-explainer
 
 一个适用于 Claude Code / Codex 的技能，用来根据代码仓库和论文生成单文件暗色主题 HTML，讲解模型架构与训练流程。映射论文 claim 到具体代码行，追踪真实张量维度。
 
@@ -41,9 +41,9 @@ Given a code repository and a paper (arXiv URL or PDF), produce a single-file da
 
 ### 适合什么场景 / When to use this
 
-适合 **model-training-explainer**：
+适合 **model-html-explainer**：
 
-Use **model-training-explainer** when you want:
+Use **model-html-explainer** when you want:
 
 - 快速理解一个不熟悉的模型仓库
 - 将论文方法与代码实现对应起来
@@ -58,7 +58,7 @@ Use **model-training-explainer** when you want:
 <a id="toc-installation"></a>
 ## 安装 · Installation
 
-仓库地址：**https://github.com/<your>/model-training-explainer**
+仓库地址：**https://github.com/<your>/model-html-explainer**
 
 ### 方式一：把下面这段话发给 AI（推荐） / Option A: paste this prompt to an AI agent
 
@@ -67,19 +67,19 @@ Use **model-training-explainer** when you want:
 Paste the block below to **Claude Code / Cursor / any AI agent with shell access** so it can run the install for you.
 
 ```text
-帮我安装 model-training-explainer 这个 Claude Code / Codex skill。请按下面步骤做：
+帮我安装 model-html-explainer 这个 Claude Code / Codex skill。请按下面步骤做：
 
 【Claude Code】
 - 确保 ~/.claude/skills/ 目录存在（不存在就创建）
-- 若 ~/.claude/skills/model-training-explainer 已存在且是旧副本，先删掉该目录或改用 git pull 更新
-- 执行：git clone https://github.com/<your>/model-training-explainer.git ~/.claude/skills/model-training-explainer
-- 验证：ls ~/.claude/skills/model-training-explainer/ 应至少能看到 README.md、SKILL.md、references/
+- 若 ~/.claude/skills/model-html-explainer 已存在且是旧副本，先删掉该目录或改用 git pull 更新
+- 执行：git clone https://github.com/<your>/model-html-explainer.git ~/.claude/skills/model-html-explainer
+- 验证：ls ~/.claude/skills/model-html-explainer/ 应至少能看到 README.md、SKILL.md、references/
 
 【Codex】
 - 确保 ~/.codex/skills/ 目录存在（不存在就创建）
-- 若 ~/.codex/skills/model-training-explainer 已存在且是旧副本，先删掉该目录或改用 git pull 更新
-- 执行：git clone https://github.com/<your>/model-training-explainer.git ~/.codex/skills/model-training-explainer
-- 验证：ls ~/.codex/skills/model-training-explainer/ 应至少能看到 README.md、SKILL.md、references/
+- 若 ~/.codex/skills/model-html-explainer 已存在且是旧副本，先删掉该目录或改用 git pull 更新
+- 执行：git clone https://github.com/<your>/model-html-explainer.git ~/.codex/skills/model-html-explainer
+- 验证：ls ~/.codex/skills/model-html-explainer/ 应至少能看到 README.md、SKILL.md、references/
 
 只帮我装我实际用的那一套（Claude Code 或 Codex），装好后告诉我已完成；之后我说「根据仓库和论文生成模型解释 HTML」等需求应能触发这个 skill。
 ```
@@ -90,14 +90,14 @@ Paste the block below to **Claude Code / Cursor / any AI agent with shell access
 
 ```bash
 mkdir -p ~/.claude/skills
-git clone https://github.com/<your>/model-training-explainer.git ~/.claude/skills/model-training-explainer
+git clone https://github.com/<your>/model-html-explainer.git ~/.claude/skills/model-html-explainer
 ```
 
 **Codex**
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/<your>/model-training-explainer.git ~/.codex/skills/model-training-explainer
+git clone https://github.com/<your>/model-html-explainer.git ~/.codex/skills/model-html-explainer
 ```
 
 若目标目录已存在，请先删除旧目录或进入该目录用 `git pull` 更新，再执行 `git clone`。
@@ -111,9 +111,9 @@ If the target folder already exists, remove the old tree or `git pull` inside it
 From the **parent directory** of your clone (adjust the path):
 
 ```bash
-cp -r ./model-training-explainer ~/.claude/skills/
+cp -r ./model-html-explainer ~/.claude/skills/
 # 或 / or
-cp -r ./model-training-explainer ~/.codex/skills/
+cp -r ./model-html-explainer ~/.codex/skills/
 ```
 
 ### 调用 / Invoke
@@ -123,14 +123,14 @@ cp -r ./model-training-explainer ~/.codex/skills/
 Then invoke with:
 
 ```text
-/model-training-explainer
+/model-html-explainer
 ```
 
 <a id="toc-usage"></a>
 ## 用法 / Usage
 
 ```text
-/model-training-explainer
+/model-html-explainer
 
 > "结合代码库 https://github.com/xxx/xxx 和论文 https://arxiv.org/abs/xxx 生成解释的 HTML"
 ```
@@ -151,7 +151,7 @@ The skill will:
 ## 效果展示 · Gallery
 
 <p>
-  <a title="OpenOneRec Explainer" href="https://github.com/<your>/model-training-explainer/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
+  <a title="OpenOneRec Explainer" href="https://github.com/<your>/model-html-explainer/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
 </p>
 
 <a id="toc-docs"></a>

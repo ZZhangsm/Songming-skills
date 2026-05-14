@@ -1,5 +1,5 @@
 ---
-name: model-training-explainer
+name: model-html-explainer
 description: >-
   Given a code repository and a paper (URL or PDF), generate a self-contained
   HTML document that explains the model — architecture, data pipeline, training
