@@ -1,14 +1,13 @@
-# Songming-skills
+# model-training-explainer
 
-一个适用于 Claude Code / Codex 的技能集合，用来存放个人积累的 AI Agent 技能。每个技能独立目录，包含 `SKILL.md` 入口及可选的 `references/`、`scripts/`、`assets/` 子目录。
+一个适用于 Claude Code / Codex 的技能，用来根据代码仓库和论文生成单文件暗色主题 HTML，讲解模型架构与训练流程。映射论文 claim 到具体代码行，追踪真实张量维度。
 
-A personal collection of Claude Code / Codex skills. Each skill lives in its own directory with a `SKILL.md` entry point and optional `references/`, `scripts/`, `assets/` subdirectories.
+A Claude Code / Codex skill for generating single-file dark-theme HTML explainers from code repositories and papers. Maps paper claims to concrete code line references with real tensor dimensions.
 
 ## 目录 · Table of contents
 
 - [v0.1 更新摘要 · v0.1 Release highlights](#toc-highlights)
-- [这个仓库是做什么的 · What this does](#toc-what)
-- [技能列表 · Skills](#toc-skills)
+- [这个 Skill 是做什么的 · What this does](#toc-what)
 - [安装 · Installation](#toc-installation)
 - [用法 · Usage](#toc-usage)
 - [效果展示 · Gallery](#toc-gallery)
@@ -18,37 +17,48 @@ A personal collection of Claude Code / Codex skills. Each skill lives in its own
 <a id="toc-highlights"></a>
 ## v0.1 更新摘要 · v0.1 Release Highlights
 
-- **初始版本**：首个技能 `model-training-explainer` 就位，支持给定仓库 + 论文生成单文件暗色主题 HTML。
-  **Initial release**: first skill `model-training-explainer` is ready — generate a single-file dark-theme HTML from a code repository and a paper.
+- **初始版本**：支持给定仓库 + 论文生成单文件暗色主题 HTML。
+  **Initial release**: generate a single-file dark-theme HTML from a code repository and a paper.
 
 <a id="toc-what"></a>
-## 这个仓库是做什么的 · What this does
+## 这个 Skill 是做什么的 · What this does
 
-本人日常工作中积累的 AI Agent 技能集合。每个技能封装一类特定任务的工作流，让 Claude Code / Codex 在收到相关指令时以一致且可预期的方式执行。技能独立于任何具体代码库，可在多个项目中复用。
-
-This repo collects AI agent skills built through daily work. Each skill encapsulates a specific task workflow so Claude Code / Codex executes consistently and predictably when triggered. Skills are decoupled from any project and reusable across repos.
-
-<a id="toc-skills"></a>
-## 技能列表 · Skills
-
-### model-training-explainer
-
-**领域 Domain:** code-to-doc · paper-to-HTML · 模型架构解读 · 训练流程可视化
-
-给定一个代码仓库和一篇论文（arXiv URL 或 PDF），生成单文件暗色主题 HTML，讲解模型及其训练流程：架构总览、数据流水线、训练策略、损失函数、评估，将论文中的每项 claim 映射到具体代码行，并用代表性数据集展示真实张量形状。
+给定一个代码仓库和一篇论文（arXiv URL 或 PDF），生成单文件暗色主题 HTML，逐一讲解模型及其训练流程：架构总览、数据流水线、训练策略、损失函数、评估，将论文中的每项 claim 映射到具体代码行，并用代表性数据集展示真实张量形状。
 
 Given a code repository and a paper (arXiv URL or PDF), produce a single-file dark-theme HTML that walks through the model and its training pipeline — architecture overview, data pipeline, training strategy, loss functions, evaluation. Each paper claim maps to concrete code line references with real tensor dimensions.
 
-| 文件 File | 作用 Purpose |
-|---|---|
-| `model-training-explainer/SKILL.md` | 技能定义与执行策略 / Skill definition and workflow |
-| `model-training-explainer/references/template.css` | 暗色主题样式（架构图、流程图、代码块、表格、响应式） / Dark-theme CSS (arch diagrams, flow charts, code blocks, tables, responsive layout) |
-| `model-training-explainer/references/template.js` | IntersectionObserver 滚动导航高亮 / Scroll-spy nav highlighter |
+**核心特性 / Key Features:**
+
+- **零依赖**：单个 HTML 文件，CSS/JS 内联，无需 npm 或构建工具
+- **代码映射**：每项 claim 对应到具体文件与行号
+- **真实维度**：跳过 `[batch, seq, dim]` 占位符，给出具体数值
+- **暗色主题**：架构图、流程图、代码块、表格，IntersectionObserver 滚动导航
+
+- **Zero dependencies**: Single-file HTML with inline CSS/JS
+- **Code mapping**: each claim links to concrete `file.py:N-M`
+- **Real dimensions**: no placeholder shapes, actual tensor sizes
+- **Dark theme**: arch diagrams, flow charts, code blocks, tables, scroll-spy nav
+
+### 适合什么场景 / When to use this
+
+适合 **model-training-explainer**：
+
+Use **model-training-explainer** when you want:
+
+- 快速理解一个不熟悉的模型仓库
+- 将论文方法与代码实现对应起来
+- 为团队生成模型架构文档
+- 论文审稿时验证实现细节
+
+- quickly understand an unfamiliar model repo
+- map paper methods to actual code
+- generate architecture docs for a team
+- verify implementation details during paper review
 
 <a id="toc-installation"></a>
 ## 安装 · Installation
 
-仓库地址：**https://github.com/<your>/Songming-skills**
+仓库地址：**https://github.com/<your>/model-training-explainer**
 
 ### 方式一：把下面这段话发给 AI（推荐） / Option A: paste this prompt to an AI agent
 
@@ -57,19 +67,19 @@ Given a code repository and a paper (arXiv URL or PDF), produce a single-file da
 Paste the block below to **Claude Code / Cursor / any AI agent with shell access** so it can run the install for you.
 
 ```text
-帮我安装 Songming-skills 这个 Claude Code / Codex skill。请按下面步骤做：
+帮我安装 model-training-explainer 这个 Claude Code / Codex skill。请按下面步骤做：
 
 【Claude Code】
 - 确保 ~/.claude/skills/ 目录存在（不存在就创建）
-- 若 ~/.claude/skills/Songming-skills 已存在且是旧副本，先删掉该目录或改用 git pull 更新
-- 执行：git clone https://github.com/<your>/Songming-skills.git ~/.claude/skills/Songming-skills
-- 验证：ls ~/.claude/skills/Songming-skills/ 应至少能看到 README.md、model-training-explainer/
+- 若 ~/.claude/skills/model-training-explainer 已存在且是旧副本，先删掉该目录或改用 git pull 更新
+- 执行：git clone https://github.com/<your>/model-training-explainer.git ~/.claude/skills/model-training-explainer
+- 验证：ls ~/.claude/skills/model-training-explainer/ 应至少能看到 README.md、SKILL.md、references/
 
 【Codex】
 - 确保 ~/.codex/skills/ 目录存在（不存在就创建）
-- 若 ~/.codex/skills/Songming-skills 已存在且是旧副本，先删掉该目录或改用 git pull 更新
-- 执行：git clone https://github.com/<your>/Songming-skills.git ~/.codex/skills/Songming-skills
-- 验证：ls ~/.codex/skills/Songming-skills/ 应至少能看到 README.md、model-training-explainer/
+- 若 ~/.codex/skills/model-training-explainer 已存在且是旧副本，先删掉该目录或改用 git pull 更新
+- 执行：git clone https://github.com/<your>/model-training-explainer.git ~/.codex/skills/model-training-explainer
+- 验证：ls ~/.codex/skills/model-training-explainer/ 应至少能看到 README.md、SKILL.md、references/
 
 只帮我装我实际用的那一套（Claude Code 或 Codex），装好后告诉我已完成；之后我说「根据仓库和论文生成模型解释 HTML」等需求应能触发这个 skill。
 ```
@@ -80,14 +90,14 @@ Paste the block below to **Claude Code / Cursor / any AI agent with shell access
 
 ```bash
 mkdir -p ~/.claude/skills
-git clone https://github.com/<your>/Songming-skills.git ~/.claude/skills/Songming-skills
+git clone https://github.com/<your>/model-training-explainer.git ~/.claude/skills/model-training-explainer
 ```
 
 **Codex**
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/<your>/Songming-skills.git ~/.codex/skills/Songming-skills
+git clone https://github.com/<your>/model-training-explainer.git ~/.codex/skills/model-training-explainer
 ```
 
 若目标目录已存在，请先删除旧目录或进入该目录用 `git pull` 更新，再执行 `git clone`。
@@ -101,9 +111,9 @@ If the target folder already exists, remove the old tree or `git pull` inside it
 From the **parent directory** of your clone (adjust the path):
 
 ```bash
-cp -r ./Songming-skills ~/.claude/skills/
+cp -r ./model-training-explainer ~/.claude/skills/
 # 或 / or
-cp -r ./Songming-skills ~/.codex/skills/
+cp -r ./model-training-explainer ~/.codex/skills/
 ```
 
 ### 调用 / Invoke
@@ -117,15 +127,7 @@ Then invoke with:
 ```
 
 <a id="toc-usage"></a>
-## 用法 · Usage
-
-### 当前技能 / Current skills
-
-| 技能 Skill | 触发方式 Trigger |
-|---|---|
-| `model-training-explainer` | 对话中提及"模型解释""训练流程""架构图" + GitHub/arXiv 链接 / Mention "model explanation", "training pipeline", "architecture" + GitHub/arXiv link |
-
-### model-training-explainer
+## 用法 / Usage
 
 ```text
 /model-training-explainer
@@ -133,20 +135,24 @@ Then invoke with:
 > "结合代码库 https://github.com/xxx/xxx 和论文 https://arxiv.org/abs/xxx 生成解释的 HTML"
 ```
 
-技能会先读取仓库结构和论文内容，提取关键信息，再生成单文件暗色主题 HTML。
+技能会：
 
-The skill will read the repo structure and paper, extract key information, then produce a single-file dark-theme HTML.
+The skill will:
+
+1. **Phase 1（仓库结构分析）** — 识别模型定义、训练循环、数据加载等关键文件
+2. **Phase 2（论文提取）** — 抽取架构描述、训练策略、损失公式、评估指标
+3. **Phase 3（生成 HTML）** — 产出单文件暗色主题 HTML
+
+1. **Phase 1 (repo structure)** — identify model definition, training loop, data loading
+2. **Phase 2 (paper extraction)** — extract architecture, training strategy, loss, evaluation
+3. **Phase 3 (HTML generation)** — produce single-file dark-theme output
 
 <a id="toc-gallery"></a>
 ## 效果展示 · Gallery
 
-### model-training-explainer 生成样例 · Generated sample
-
 <p>
-  <a title="OpenOneRec Explainer" href="https://github.com/<your>/Songming-skills/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
+  <a title="OpenOneRec Explainer" href="https://github.com/<your>/model-training-explainer/blob/main/docs/gallery/openonerec-hero.png"><img src="docs/gallery/openonerec-hero.png" width="80%" alt="OpenOneRec Explainer — hero section" /></a>
 </p>
-
-> 更多截图可复制到 `docs/gallery/` 中，然后在此处引用。 / Copy additional screenshots into `docs/gallery/` and reference them here.
 
 <a id="toc-docs"></a>
 ## 文档结构 · Documentation map
@@ -154,17 +160,18 @@ The skill will read the repo structure and paper, extract key information, then 
 | 文件 File | 作用 Purpose |
 |---|---|
 | `README.md` | 仓库介绍 / Repo introduction |
-| `<skill-name>/SKILL.md` | 技能定义与执行策略 / Skill definition and workflow |
-| `<skill-name>/references/` | 技能配套模板与参考 / Templates and references |
-| `<skill-name>/scripts/` | 技能辅助脚本 / Helper scripts |
-| `<skill-name>/assets/` | 静态资源 / Static assets |
-| `docs/` | 效果截图等辅助文档 / Gallery screenshots and supporting docs |
+| `SKILL.md` | 技能定义与执行策略 / Skill definition and workflow |
+| `references/template.css` | 暗色主题样式（架构图、流程图、代码块、表格、响应式） / Dark-theme CSS (arch diagrams, flow charts, code blocks, tables, responsive layout) |
+| `references/template.js` | IntersectionObserver 滚动导航高亮 / Scroll-spy nav highlighter |
+| `docs/gallery/` | 效果截图 / Gallery screenshots |
 
 <a id="toc-requirements"></a>
-## 依赖要求 · Requirements
+## 依赖要求 / Requirements
 
-- Claude Code 或 OpenAI Codex，支持从本地目录加载 skill
-- 各技能可能有额外依赖，见对应 `SKILL.md`
+- [Claude Code](https://claude.ai/claude-code) 或任意将 skill 安装到 `~/.claude/skills/` 的兼容客户端；[OpenAI Codex](https://codex.ai) 使用 `~/.codex/skills/`
+- 需要代码仓库访问权限（GitHub 或本地路径）
+- 需要论文原文（arXiv URL 或本地 PDF）
 
-- Claude Code or OpenAI Codex, with skill loading from local directories
-- Individual skills may have additional dependencies — see their `SKILL.md`
+- [Claude Code](https://claude.ai/claude-code) or any runner that loads skills from `~/.claude/skills/`; [OpenAI Codex](https://codex.ai) uses `~/.codex/skills/`
+- Access to the code repository (GitHub or local path)
+- The paper (arXiv URL or local PDF)
